@@ -186,3 +186,306 @@ button { cursor:pointer }
 </main>
 <footer class="wrap footer"><strong>✦ KELAJAK MARKAZI MATH QUEST</strong><p>Bilim bilan yuqoriga! © <span id="year"></span></p></footer>
 <div class="toast" id="toast"></div>
+  
+<script>
+(() => {
+const API = "https://kelajak-mathquest-backend.onrender.com";
+const $ = id => document.getElementById(id);
+
+let total = 0, correct = 0, answered = 0;
+let index = 0, locked = false, current = null, topic = "all";
+
+const key = "km_mathquest_learning_v1";
+
+const questions = [
+ {grade:1,topic:"units",q:"1 metr necha santimetr?",opts:["10 cm","100 cm","1000 cm","1 cm"],a:1,hint:"Bir metrda 100 santimetr bor.",explain:"1 m = 100 cm."},
+ {grade:1,topic:"units",q:"4 cm necha millimetr?",opts:["4 mm","14 mm","40 mm","400 mm"],a:2,hint:"1 cm = 10 mm.",explain:"4 × 10 = 40 mm."},
+ {grade:1,topic:"add",q:"12 cm va 8 cm uzunliklar jami qancha?",opts:["20 cm","4 cm","18 cm","21 cm"],a:0,hint:"Jami uzunlik uchun qo‘shing.",explain:"12 + 8 = 20 cm."},
+ {grade:1,topic:"story",q:"30 cm lentadan 10 cm kesildi. Qancha qoldi?",opts:["40 cm","20 cm","10 cm","30 cm"],a:1,hint:"30 dan 10 ni ayiring.",explain:"30 − 10 = 20 cm."},
+ {grade:2,topic:"units",q:"2 m 35 cm necha santimetr?",opts:["235 cm","205 cm","253 cm","23 cm"],a:0,hint:"2 m = 200 cm.",explain:"200 + 35 = 235 cm."},
+ {grade:2,topic:"units",q:"3 dm necha santimetr?",opts:["3 cm","30 cm","300 cm","13 cm"],a:1,hint:"1 dm = 10 cm.",explain:"3 × 10 = 30 cm."},
+ {grade:2,topic:"add",q:"120 cm va 80 cm jami qancha?",opts:["100 cm","180 cm","200 cm","120 cm"],a:2,hint:"Ikkala uzunlikni qo‘shing.",explain:"120 + 80 = 200 cm = 2 m."},
+ {grade:2,topic:"story",q:"5 m arqondan 180 cm kesildi. Qancha qoldi?",opts:["320 cm","380 cm","680 cm","220 cm"],a:0,hint:"5 m = 500 cm.",explain:"500 − 180 = 320 cm."},
+ {grade:3,topic:"units",q:"2 km necha metr?",opts:["200 m","2000 m","20 000 m","20 m"],a:1,hint:"1 km = 1000 m.",explain:"2 × 1000 = 2000 m."},
+ {grade:3,topic:"units",q:"250 cm ni metr va santimetrda ifodalang.",opts:["25 m","2 m 5 cm","2 m 50 cm","250 m"],a:2,hint:"200 cm = 2 m; 50 cm qoladi.",explain:"250 cm = 2 m 50 cm."},
+ {grade:3,topic:"add",q:"1 km 250 m + 750 m = ?",opts:["1 km","2 km","1 km 750 m","2 km 250 m"],a:1,hint:"250 m + 750 m = 1000 m.",explain:"1 km + 1000 m = 2 km."},
+ {grade:3,topic:"story",q:"350 m yo‘lni bola 3 marta yurdi. Jami qancha?",opts:["700 m","950 m","1050 m","1000 m"],a:2,hint:"350 ni 3 ga ko‘paytiring.",explain:"350 × 3 = 1050 m."},
+ {grade:4,topic:"units",q:"3 km 45 m necha metr?",opts:["345 m","3045 m","304 m","30045 m"],a:1,hint:"3 km = 3000 m.",explain:"3000 + 45 = 3045 m."},
+ {grade:4,topic:"add",q:"2 m 75 cm + 1 m 60 cm = ?",opts:["3 m 35 cm","4 m 35 cm","4 m 25 cm","3 m 135 cm"],a:1,hint:"75 + 60 = 135 cm.",explain:"3 m 135 cm = 4 m 35 cm."},
+ {grade:4,topic:"story",q:"2 km 400 m yo‘ldan 850 m ta’mirlandi. Qancha qoldi?",opts:["1 km 550 m","1 km 650 m","2 km 250 m","1 km 450 m"],a:0,hint:"2 km 400 m = 2400 m.",explain:"2400 − 850 = 1550 m = 1 km 550 m."},
+ {grade:4,topic:"story",q:"3 m 25 cm lentadan 85 cm uzun lenta qancha?",opts:["4 m 10 cm","3 m 110 cm","4 m 25 cm","2 m 40 cm"],a:0,hint:"3 m 25 cm = 325 cm.",explain:"325 + 85 = 410 cm = 4 m 10 cm."}
+];
+
+function read() {
+ try { return JSON.parse(localStorage.getItem(key) || "{}"); }
+ catch { return {}; }
+}
+
+function persist() {
+ localStorage.setItem(key, JSON.stringify({
+   name:$("studentName").value,
+   grade:$("grade").value,
+   total, correct, answered
+ }));
+}
+
+function toast(message) {
+ const t=$("toast");
+ t.textContent=message;
+ t.classList.add("show");
+ setTimeout(()=>t.classList.remove("show"),2500);
+}
+
+function pool() {
+ const grade=+$("grade").value;
+ return questions.filter(q =>
+   (q.grade===grade || q.grade<grade) &&
+   (topic==="all" || q.topic===topic)
+ );
+}
+
+function renderQuestion() {
+ const list=pool();
+ if(!list.length) return;
+
+ locked=false;
+ current=list[index%list.length];
+
+ $("qcount").textContent="MISOL "+String(index+1).padStart(2,"0");
+ $("topicName").textContent={
+  all:"BARCHA MAVZULAR",units:"BIRLIKLAR",
+  add:"HISOBLASH",story:"MASALALAR"
+ }[topic];
+
+ $("progress").style.width=((index%list.length+1)/list.length*100)+"%";
+ $("question").textContent=current.q;
+ $("answers").innerHTML="";
+
+ current.opts.forEach((value,i)=>{
+   const button=document.createElement("button");
+   button.className="answer";
+   button.textContent=value;
+   button.onclick=()=>choose(button,i);
+   $("answers").appendChild(button);
+ });
+
+ $("feedback").textContent="Javobni tanlang. To‘g‘ri javob +10 ball!";
+ $("feedback").style.color="";
+}
+
+function updateStats() {
+ $("totalPoints").textContent=total;
+ $("answered").textContent=answered;
+ $("accuracy").textContent=answered
+   ? Math.round(correct/answered*100)+"%" : "—";
+ $("sessionPoints").textContent=total;
+ $("correctCount").textContent=correct;
+}
+
+async function registerStudent() {
+ const name=$("studentName").value.trim();
+ if(!name) throw Error("Ismingizni kiriting.");
+
+ let id=localStorage.getItem("km_demo_id");
+ if(!id) {
+   id="demo-"+Math.random().toString(36).slice(2,12);
+   localStorage.setItem("km_demo_id",id);
+ }
+
+ const response=await fetch(API+"/api/register",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+     telegram_id:id,
+     name,
+     grade:+$("grade").value
+   })
+ });
+
+ if(!response.ok) throw Error("Profil serverga yozilmadi.");
+ return id;
+}
+
+async function choose(button,answerIndex) {
+ if(locked) return;
+ locked=true;
+ answered++;
+
+ const isCorrect=answerIndex===current.a;
+
+ document.querySelectorAll(".answer").forEach((b,i)=>{
+   b.disabled=true;
+   if(i===current.a) b.classList.add("good");
+ });
+
+ if(!isCorrect) button.classList.add("bad");
+
+ if(isCorrect) {
+   total+=10;
+   correct++;
+   $("feedback").textContent="Barakalla! +10 ball ⭐";
+   $("feedback").style.color="var(--green)";
+ } else {
+   $("feedback").textContent=
+     "To‘g‘ri javob: "+current.opts[current.a]+". "+current.explain;
+   $("feedback").style.color="var(--red)";
+ }
+
+ updateStats();
+ persist();
+
+ try {
+   const id=await registerStudent();
+
+   if(isCorrect) {
+     const response=await fetch(API+"/api/answer",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({telegram_id:id,correct:true})
+     });
+
+     if(!response.ok) throw Error("Ball serverga yozilmadi.");
+     refreshBoard();
+     refreshHistory();
+   }
+ } catch(error) {
+   toast("Server xatosi: "+error.message);
+ }
+}
+
+function nextQuestion() {
+ if(!locked) {
+   toast("Avval javobni tanlang.");
+   return;
+ }
+ index++;
+ renderQuestion();
+}
+
+function renderBoard(data) {
+ const rows=data.top10||[];
+
+ $("week").textContent=
+   "Hafta: "+(data.week_start||"—")+" — "+
+   (data.week_end||"")+" · TOP-"+rows.length;
+
+ if(!rows.length) {
+   $("podium").innerHTML="";
+   $("leaders").innerHTML=
+    '<div class="empty"><span>🏆</span>Hali ball yo‘q. Birinchi chempion bo‘ling!</div>';
+   return;
+ }
+
+ const podium=[rows[1],rows[0],rows[2]].filter(Boolean);
+
+ $("podium").innerHTML=podium.map((p,i)=>
+  `<div class="pod ${i===1?"first":""}">
+    <div class="medal">${i===0?"🥈":i===1?"🥇":"🥉"}</div>
+    <strong>${escapeHTML(p.name)}</strong>
+    <small>${p.points} ball</small>
+   </div>`
+ ).join("");
+
+ $("leaders").innerHTML=rows.map((p,i)=>
+  `<div class="leaderrow">
+    <div class="rank">${i+1}</div>
+    <div><div class="lname">${escapeHTML(p.name)}</div>
+    <div class="lgrade">${p.grade}-sinf</div></div>
+    <div class="pts">${p.points} ⭐</div>
+   </div>`
+ ).join("");
+}
+
+function escapeHTML(value) {
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+async function refreshBoard() {
+ try {
+   const response=await fetch(API+"/api/leaderboard");
+   if(!response.ok) throw Error();
+   renderBoard(await response.json());
+ } catch {
+   $("week").textContent="Server bilan aloqa yo‘q";
+   $("podium").innerHTML="";
+   $("leaders").innerHTML=
+    '<div class="empty"><span>📡</span>Reyting yuklanmadi. Serverni tekshiring.</div>';
+ }
+}
+
+async function refreshHistory() {
+ try {
+   const response=await fetch(API+"/api/history?weeks=8");
+   if(!response.ok) throw Error();
+   const data=await response.json();
+
+   $("history").innerHTML=data.weeks.slice().reverse().map(w=>
+    `<div class="historyrow">
+      <div><strong>${w.week_start} — ${w.week_end}</strong>
+      <small>${w.answers_scored} ta ball berilgan javob</small></div>
+      <b>${w.points} ⭐</b>
+     </div>`
+   ).join("");
+ } catch {
+   $("history").innerHTML=
+    '<div class="empty"><span>🗓️</span>Tarix yuklanmadi. Backendni yangilang.</div>';
+ }
+}
+
+$("saveProfile").onclick=async()=>{
+ try {
+   await registerStudent();
+   persist();
+   toast("Profil saqlandi.");
+ } catch(error) {
+   toast(error.message);
+ }
+};
+
+$("grade").onchange=()=>{
+ $("gradeTag").textContent=$("grade").value+"-SINF";
+ index=0;
+ renderQuestion();
+ persist();
+};
+
+document.querySelectorAll(".tab").forEach(button=>{
+ button.onclick=()=>{
+   document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+   button.classList.add("active");
+   topic=button.dataset.topic;
+   index=0;
+   renderQuestion();
+ };
+});
+
+$("next").onclick=nextQuestion;
+$("hint").onclick=()=>toast(current?current.hint:"Ishora yo‘q");
+$("startBtn").onclick=()=>$("game").scrollIntoView({behavior:"smooth"});
+$("boardBtn").onclick=()=>$("board").scrollIntoView({behavior:"smooth"});
+$("refresh").onclick=()=>{refreshBoard();refreshHistory()};
+
+$("year").textContent=new Date().getFullYear();
+
+const old=read();
+if(old.name) $("studentName").value=old.name;
+if(old.grade) $("grade").value=old.grade;
+
+total=+old.total||0;
+correct=+old.correct||0;
+answered=+old.answered||0;
+
+$("gradeTag").textContent=$("grade").value+"-SINF";
+
+updateStats();
+renderQuestion();
+refreshBoard();
+refreshHistory();
+})();
+</script>
+</body>
+</html>
+
