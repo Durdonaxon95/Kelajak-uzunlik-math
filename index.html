@@ -1,46 +1,189 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101333"><title>Kelajak Markazi | Math Quest</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101633">
+<title>Kelajak Markazi Math Quest</title>
 <style>
-:root{--bg:#0b1028;--panel:#151d43;--panel2:#1c2858;--text:#f7f8ff;--muted:#a9b4e2;--gold:#ffd166;--cyan:#62e5ef;--violet:#8d7bff;--green:#4ce0ad;--red:#ff7188;--line:#ffffff18}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#273a81 0,transparent 38%),radial-gradient(ellipse at 90% 28%,#4a277e55 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:1120px;margin:auto;padding:0 18px}.nav{height:76px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.4px}.logo{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#ffe38d,#ff9b55);color:#1a2250;font-size:24px;box-shadow:0 7px 24px #ffc85744}.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--cyan);margin-top:3px}.pill{font-size:11px;font-weight:850;border:1px solid #ffffff24;border-radius:999px;padding:9px 12px;background:#ffffff0b;color:#dce4ff}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center;padding:44px 0 35px}.eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:1.5px}.hero h1{font-size:clamp(38px,6vw,68px);line-height:.99;letter-spacing:-2.7px;margin:15px 0}.hero h1 span{background:linear-gradient(90deg,var(--gold),#ff9f78);background-clip:text;color:transparent}.hero p{color:#c4ccef;line-height:1.7;max-width:520px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border-radius:14px;padding:13px 17px;font-weight:900;transition:.18s}.btn:hover{transform:translateY(-2px)}.primary{background:linear-gradient(120deg,var(--gold),#ffad6b);color:#1b2146;box-shadow:0 9px 28px #ffbd5540}.secondary{background:#ffffff12;border:1px solid #ffffff24;color:white}.art{height:285px;display:grid;place-items:center;position:relative}.planet{height:205px;width:205px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 25%,#fff3bd,#ffbd57 48%,#f07859 80%);box-shadow:inset -18px -22px 40px #7d326e55,0 25px 60px #0006;border:7px solid #ffffff22;font-size:95px;position:relative;transform:rotate(-7deg)}.ring{position:absolute;width:280px;height:95px;border:9px solid #8b8bff;border-radius:50%;transform:rotate(-23deg);box-shadow:0 0 22px #8b8bff44}.orb{position:absolute;background:#fff;color:#17204a;border-radius:15px;padding:10px 13px;font-weight:950;box-shadow:0 12px 30px #0004;font-size:13px}.orb small{display:block;font-size:9px;color:#67719a;margin-top:3px}.orb1{top:28px;left:4px;transform:rotate(-7deg)}.orb2{right:0;bottom:35px;transform:rotate(5deg);background:#c9fff0}.orb3{right:8px;top:22px;background:#fff0b9}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 28px}.stat{background:linear-gradient(145deg,#202d62,#141b40);border:1px solid var(--line);border-radius:18px;padding:17px;display:flex;align-items:center;gap:12px;box-shadow:0 15px 35px #0002}.stat i{font-style:normal;font-size:23px;width:44px;height:44px;display:grid;place-items:center;background:#ffffff0e;border-radius:14px}.stat b{display:block;font-size:24px}.stat small{font-size:11px;color:var(--muted)}.section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:24px 0 14px}.section-title h2{margin:0;font-size:25px;letter-spacing:-.7px}.section-title p{margin:5px 0 0;color:var(--muted);font-size:13px}.tag{background:#8c7dff22;color:#c6beff;padding:7px 10px;border-radius:999px;font-size:10px;font-weight:950;white-space:nowrap}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:start}.card{background:linear-gradient(145deg,#1a2452eF,#121a3bea);border:1px solid var(--line);border-radius:23px;padding:21px;box-shadow:0 20px 55px #0002}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.card h3{margin:0;font-size:19px}.fields{display:grid;grid-template-columns:1fr 115px;gap:10px;margin-bottom:13px}.field label{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;padding:12px;border:1px solid #ffffff20;background:#0d1432;color:white;border-radius:12px;outline:none}.field input:focus,.field select:focus{border-color:var(--cyan)}.full{width:100%}.quiz{margin-top:17px;border:1px solid #ffffff17;background:linear-gradient(145deg,#222e66,#141b42);border-radius:18px;padding:17px}.quizmeta{display:flex;justify-content:space-between;font-size:11px;color:#c4ccef;font-weight:900}.progress{height:7px;background:#ffffff15;border-radius:99px;overflow:hidden;margin:12px 0 20px}.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width .2s}.question{text-align:center;font-size:clamp(27px,4vw,36px);font-weight:950;margin:12px 0 20px;letter-spacing:-1px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.answer{border:1px solid #ffffff22;background:#ffffff0b;color:white;border-radius:13px;padding:14px 8px;font-weight:900}.answer:disabled{opacity:.95}.answer.good{background:#1e8e6c44;border-color:var(--green);color:#9affd8}.answer.bad{background:#a52b4944;border-color:var(--red);color:#ffc2cc}.feedback{min-height:24px;text-align:center;font-size:13px;font-weight:850;margin:12px 0}.quizbuttons{display:flex;gap:9px}.scorebar{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(120deg,#ffd166,#ff9f68);color:#172044;border-radius:15px;padding:15px 17px;margin-top:15px}.scorebar small{display:block;font-size:10px;font-weight:850;opacity:.75}.scorebar strong{font-size:23px}.leaderhead{display:flex;justify-content:space-between;gap:8px;align-items:center}.weeklabel{margin-top:14px;padding:9px 11px;border-radius:10px;background:#ffffff0a;color:#bdc8f3;font-size:11px}.podium{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:7px;align-items:end;margin:22px 0 17px}.pod{background:#ffffff09;border:1px solid #ffffff10;border-radius:15px;padding:12px 4px;text-align:center}.pod.first{background:#ffc85716;border-color:#ffd16655;padding-top:20px}.pod .medal{font-size:26px}.pod strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:7px 0 4px}.pod small{font-size:10px;color:var(--muted)}.leaderlist{display:grid;gap:7px}.leaderrow{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;padding:10px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff06}.rank{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#ffffff0c;font-size:12px;font-weight:950}.lname{font-size:12px;font-weight:900}.lgrade{font-size:10px;color:var(--muted);margin-top:3px}.pts{font-size:12px;font-weight:950;color:var(--gold);white-space:nowrap}.empty{text-align:center;padding:25px 10px;color:var(--muted);font-size:13px;line-height:1.6}.empty span{display:block;font-size:34px;margin-bottom:8px}.notice{border:1px solid #ffd16638;background:#ffd1660c;color:#ead9a1;border-radius:13px;padding:12px;font-size:11px;line-height:1.6;margin-top:14px}.history{display:grid;gap:8px}.historyrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px;border-radius:13px;background:#ffffff08;border:1px solid #ffffff12}.historyrow strong{font-size:12px}.historyrow small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.historyrow b{color:var(--cyan);font-size:13px}.footer{margin-top:40px;border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:11px}.footer strong{color:white}.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,100px);opacity:0;transition:.25s;background:#f7f8ff;color:#141b40;border-radius:14px;padding:13px 17px;box-shadow:0 12px 40px #0005;z-index:9;font-size:13px;font-weight:800;max-width:90vw}.toast.show{transform:translate(-50%,0);opacity:1}
-@media(max-width:760px){.wrap{padding:0 13px}.nav{height:67px}.hero{grid-template-columns:1fr;padding:28px 0 20px}.hero h1{font-size:43px}.hero p{font-size:14px}.art{height:210px}.planet{width:150px;height:150px;font-size:70px}.ring{width:220px;height:75px}.orb1{left:0;top:18px}.orb2{right:0;bottom:20px}.stats{gap:7px}.stat{display:block;padding:11px 9px}.stat i{width:34px;height:34px;font-size:18px;margin-bottom:7px}.stat b{font-size:19px}.stat small{font-size:9px}.grid{grid-template-columns:1fr}.card{padding:16px}.section-title h2{font-size:21px}.fields{grid-template-columns:1fr 100px}.card h3{font-size:17px}.pill{font-size:9px;padding:8px}.hero h1{letter-spacing:-1.6px}}
-</style></head>
+:root {
+  --bg:#0a1027;
+  --panel:#151f48;
+  --text:#f7f8ff;
+  --muted:#b4bee5;
+  --gold:#ffd166;
+  --cyan:#62e5ef;
+  --purple:#9586ff;
+  --green:#54e0b0;
+  --red:#ff8297;
+}
+* { box-sizing:border-box }
+body {
+  margin:0;
+  background:radial-gradient(ellipse at 20% 0%,#2c3e83,transparent 38%),var(--bg);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+}
+button,input,select { font:inherit }
+button { cursor:pointer }
+.wrap { max-width:1080px; margin:auto; padding:0 16px }
+.nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 0; border-bottom:1px solid #ffffff20;
+}
+.brand { display:flex; gap:10px; align-items:center; font-weight:950 }
+.logo {
+  display:grid; place-items:center; width:44px; height:44px;
+  border-radius:15px; background:linear-gradient(135deg,#ffe58e,#ff985e);
+  color:#182044; font-size:25px;
+}
+.brand small { display:block; color:var(--cyan); font-size:9px; letter-spacing:1.5px }
+.badge,.tag {
+  padding:8px 11px; border-radius:999px; background:#ffffff10;
+  border:1px solid #ffffff20; font-size:10px; font-weight:900;
+}
+.hero {
+  display:grid; grid-template-columns:1.15fr .85fr;
+  align-items:center; gap:22px; padding:38px 0 25px;
+}
+.eyebrow { font-size:12px; color:var(--cyan); font-weight:900; letter-spacing:1.5px }
+.hero h1 { font-size:clamp(38px,6vw,64px); line-height:1; margin:14px 0 }
+.hero h1 span { color:var(--gold) }
+.hero p { line-height:1.7; color:#c4ccef }
+.actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px }
+.btn { padding:13px 17px; border-radius:14px; border:0; font-weight:900 }
+.primary { background:linear-gradient(120deg,var(--gold),#ffac6b); color:#192044 }
+.secondary { background:#ffffff10; color:white; border:1px solid #ffffff24 }
+.art { height:245px; display:grid; place-items:center; position:relative }
+.planet {
+  height:175px; width:175px; border-radius:50%; display:grid; place-items:center;
+  background:radial-gradient(circle at 30% 25%,#fff4c6,#ffc45f 48%,#ef795e 80%);
+  box-shadow:inset -17px -20px 35px #803b6a55,0 25px 55px #0005;
+  border:6px solid #ffffff25; font-size:78px; z-index:1;
+}
+.ring {
+  position:absolute; width:250px; height:83px; border:8px solid #9086ff;
+  border-radius:50%; transform:rotate(-24deg);
+}
+.orb { position:absolute; background:#fff; color:#172044; border-radius:13px; padding:9px 12px; font-size:12px; font-weight:950 }
+.orb small { display:block; color:#657099; font-size:9px }
+.orb.a { top:15px; left:0 }
+.orb.b { bottom:15px; right:0; background:#c9fff0 }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:8px 0 27px }
+.stat { display:flex; align-items:center; gap:12px; padding:14px; border-radius:17px; background:linear-gradient(140deg,#202d60,#141c40); border:1px solid #ffffff17 }
+.stat i { font-style:normal; font-size:22px }
+.stat b { display:block; font-size:23px }
+.stat small { font-size:10px; color:var(--muted) }
+.section-head { display:flex; justify-content:space-between; align-items:end; gap:10px; margin:26px 0 13px }
+.section-head h2 { margin:0; font-size:24px }
+.section-head p { margin:5px 0 0; color:var(--muted); font-size:13px }
+.tag { color:#c8c0ff; background:#9285ff20 }
+.columns { display:grid; grid-template-columns:1.05fr .95fr; gap:15px; align-items:start }
+.card { padding:19px; border-radius:22px; background:linear-gradient(145deg,#1b2654f2,#121a3bea); border:1px solid #ffffff1c; margin-bottom:15px }
+.cardhead { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:16px }
+.card h3 { margin:0; font-size:18px }
+.fields { display:grid; grid-template-columns:1fr 110px; gap:9px; margin-bottom:12px }
+.field label { display:block; font-size:10px; font-weight:850; color:var(--muted); margin-bottom:6px }
+.field input,.field select { width:100%; padding:12px; border-radius:11px; border:1px solid #ffffff22; background:#0d1432; color:white }
+.full { width:100% }
+.tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:15px 0 }
+.tab { border-radius:11px; padding:10px 4px; background:#ffffff0c; border:1px solid #ffffff19; color:#dce3ff; font-size:11px; font-weight:900 }
+.tab.active { background:#8d81ff30; border-color:var(--purple) }
+.topic { background:#ffffff08; border:1px solid #ffffff13; border-radius:15px; padding:14px; margin:12px 0 }
+.topic h4 { margin:0 0 8px }
+.topic p { margin:0; color:#c4ccef; font-size:13px; line-height:1.6 }
+.quiz { background:linear-gradient(145deg,#222e66,#141b42); border:1px solid #ffffff17; border-radius:17px; padding:15px; margin-top:14px }
+.quizmeta { display:flex; justify-content:space-between; color:#c4ccef; font-size:10px; font-weight:900 }
+.progress { height:6px; border-radius:99px; background:#ffffff18; margin:11px 0 17px; overflow:hidden }
+.progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--purple),var(--cyan)) }
+.question { font-size:clamp(25px,4vw,34px); font-weight:950; text-align:center; line-height:1.25; margin:15px 0 19px }
+.answers { display:grid; grid-template-columns:1fr 1fr; gap:8px }
+.answer { padding:13px 7px; border-radius:12px; border:1px solid #ffffff22; background:#ffffff0a; color:#fff; font-weight:900 }
+.answer.good { border-color:var(--green); background:#1b806044; color:#aaffdf }
+.answer.bad { border-color:var(--red); background:#a52b4944; color:#ffc2cc }
+.feedback { min-height:24px; text-align:center; font-size:12px; font-weight:850; margin:11px 0 }
+.quizactions { display:flex; gap:8px }
+.scorebar { display:flex; justify-content:space-between; margin-top:13px; padding:14px 16px; border-radius:14px; background:linear-gradient(110deg,#ffd166,#ffa86d); color:#172044 }
+.scorebar small { display:block; font-size:9px; font-weight:900 }
+.scorebar strong { font-size:22px }
+.week { margin:10px 0; padding:10px; border-radius:10px; background:#ffffff0b; color:#c3ccef; font-size:11px }
+.podium { display:grid; grid-template-columns:1fr 1.08fr 1fr; align-items:end; gap:7px; margin:18px 0 }
+.pod { padding:12px 4px; border-radius:13px; background:#ffffff08; border:1px solid #ffffff12; text-align:center; min-width:0 }
+.pod.first { padding-top:20px; background:#ffd16612; border-color:#ffd16650 }
+.pod .medal { font-size:25px }
+.pod strong { display:block; font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin:6px 0 }
+.pod small { font-size:10px; color:var(--muted) }
+.leaderlist,.history { display:grid; gap:7px }
+.leaderrow,.historyrow { display:grid; grid-template-columns:31px 1fr auto; align-items:center; gap:9px; padding:10px; border-radius:12px; background:#ffffff07; border:1px solid #ffffff13 }
+.rank { width:29px; height:29px; display:grid; place-items:center; border-radius:9px; background:#ffffff0d; font-weight:950; font-size:11px }
+.lname { font-size:12px; font-weight:900 }
+.lgrade,.historyrow small { font-size:10px; color:var(--muted); margin-top:3px }
+.pts { color:var(--gold); font-size:12px; font-weight:950; white-space:nowrap }
+.empty { text-align:center; padding:22px 8px; color:var(--muted); font-size:13px; line-height:1.6 }
+.empty span { display:block; font-size:30px; margin-bottom:7px }
+.notice { padding:11px 12px; border:1px solid #ffd16638; background:#ffd1660c; border-radius:12px; color:#ead9a1; font-size:11px; line-height:1.6; margin-top:12px }
+.historyrow { grid-template-columns:1fr auto }
+.historyrow strong { font-size:12px }
+.historyrow b { color:var(--cyan); font-size:13px }
+.footer { margin-top:35px; border-top:1px solid #ffffff18; padding:23px 0; color:var(--muted); font-size:11px }
+.footer strong { color:white }
+.toast { position:fixed; bottom:18px; left:50%; transform:translate(-50%,100px); opacity:0; transition:.25s; background:#f7f8ff; color:#152044; border-radius:13px; padding:12px 16px; font-weight:850; font-size:12px; z-index:9; max-width:90vw }
+.toast.show { transform:translate(-50%,0); opacity:1 }
+@media(max-width:760px) {
+ .wrap { padding:0 13px }
+ .hero { grid-template-columns:1fr; padding:27px 0 17px }
+ .hero h1 { font-size:43px }
+ .art { height:195px }
+ .planet { height:140px; width:140px; font-size:65px }
+ .ring { width:210px; height:70px }
+ .stats { gap:7px }
+ .stat { display:block; padding:10px 8px }
+ .stat b { font-size:19px }
+ .stat small { font-size:9px }
+ .columns { grid-template-columns:1fr }
+ .card { padding:15px }
+ .section-head h2 { font-size:21px }
+ .fields { grid-template-columns:1fr 100px }
+}
+</style>
+</head>
 <body>
 <header class="wrap">
- <nav class="nav"><div class="brand"><div class="logo">✦</div><div>KELAJAK MARKAZI<small>MATH QUEST · BILIM SARGUZASHTI</small></div></div><div class="pill">🚀 SINOV VERSIYASI</div></nav>
- <section class="hero"><div><div class="eyebrow">✧ O‘YNA · O‘RGAN · YUT</div><h1>Bilimingni och.<br><span>Chempion bo‘l!</span></h1><p>Har bir misol — yangi sarguzasht. Yulduzlar yig‘, darajangni oshir va Kelajak Markazi haftalik chempionatida TOP-10 ga kir!</p><div class="actions"><button class="btn primary" id="startBtn">🎮 O‘yinni boshlash</button><button class="btn secondary" id="goBoard">🏆 Chempionat</button></div></div><div class="art"><div class="ring"></div><div class="planet">🧑‍🚀</div><div class="orb orb1">+10 ⭐<small>TO‘G‘RI JAVOB</small></div><div class="orb orb2">TOP 10 🏆<small>HAFTALIK LIGA</small></div><div class="orb orb3">📐</div></div></section>
- <div class="stats"><div class="stat"><i>⭐</i><div><b id="myPoints">0</b><small>JAMI BALLARIM</small></div></div><div class="stat"><i>🧩</i><div><b id="answered">0</b><small>YECHILGAN MISOLLAR</small></div></div><div class="stat"><i>🎯</i><div><b id="accuracy">—</b><small>ANIQLIK DARAJASI</small></div></div></div>
+<nav class="nav">
+  <div class="brand"><div class="logo">✦</div><div>KELAJAK MARKAZI<small>MATH QUEST · BILIM SARGUZASHTI</small></div></div>
+  <span class="badge">🚀 SINOV VERSIYASI</span>
+</nav>
+<section class="hero">
+  <div><div class="eyebrow">✧ O‘YNA · O‘RGAN · YUT</div>
+  <h1>Bilimingni och.<br><span>Chempion bo‘l!</span></h1>
+  <p>Uzunlik birliklarini o‘rgan, masalalarni yech va har bir to‘g‘ri javob uchun yulduz ball yig‘!</p>
+  <div class="actions"><button class="btn primary" id="startBtn">🎮 Testni boshlash</button><button class="btn secondary" id="boardBtn">🏆 Haftalik TOP-10</button></div></div>
+  <div class="art"><div class="ring"></div><div class="planet">🧑‍🚀</div><div class="orb a">+10 ⭐<small>TO‘G‘RI JAVOB</small></div><div class="orb b">📏 UZUNLIK MISSIYASI<small>1–4-SINF</small></div></div>
+</section>
+<div class="stats">
+  <div class="stat"><i>⭐</i><div><b id="totalPoints">0</b><small>JAMI BALLARIM</small></div></div>
+  <div class="stat"><i>🧩</i><div><b id="answered">0</b><small>YECHILGAN MISOLLAR</small></div></div>
+  <div class="stat"><i>🎯</i><div><b id="accuracy">—</b><small>ANIQLIK</small></div></div>
+</div>
 </header>
 <main class="wrap">
- <div class="section-title"><div><h2>⚡ Matematik missiya</h2><p>Sinfingni tanla va o‘z mahoratingni ko‘rsat.</p></div><span class="tag">TO‘G‘RI JAVOB +10</span></div>
- <div class="grid">
-  <section class="card" id="game"><div class="card-head"><h3>🎯 Tezkor misollar</h3><span class="tag" id="levelTag">1-SINF</span></div>
-   <div class="fields"><div class="field"><label for="studentName">O‘QUVCHI ISMI</label><input id="studentName" maxlength="80" placeholder="Ismingni yoz"></div><div class="field"><label for="grade">SINF</label><select id="grade"><option value="1">1-sinf</option><option value="2">2-sinf</option><option value="3">3-sinf</option><option value="4">4-sinf</option></select></div></div>
-   <button class="btn secondary full" id="saveProfile">Ism va sinfni saqlash</button>
-   <div class="quiz"><div class="quizmeta"><span id="qcount">MISOL 01</span><span>⚡ MISSION MODE</span></div><div class="progress"><span id="progress"></span></div><div class="question" id="question">3 + 4 = ?</div><div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite">Javobni tanla va ball yig‘!</div><div class="quizbuttons"><button class="btn secondary full" id="hint">💡 Yordam</button><button class="btn primary full" id="next">Keyingi →</button></div></div>
-   <div class="scorebar"><div><small>BU SESSIYA</small><strong><span id="sessionPoints">0</span> ball</strong></div><div style="text-align:right"><small>TO‘G‘RI JAVOB</small><strong id="sessionCorrect">0</strong></div></div>
-   <div class="notice">🧪 Sinov rejimi. O‘quvchi nomi va ballar hozircha haqiqiy, himoyalangan hisob sifatida qaralmaydi. Ommaviy ishga tushirishdan oldin server autentifikatsiyasi va doimiy baza sozlanishi kerak.</div>
-  </section>
-  <section class="card" id="board"><div class="card-head"><h3>🏆 Haftalik TOP-10</h3><span class="tag">1–4-SINF</span></div><div class="weeklabel" id="week">Reyting yuklanmoqda…</div><div class="podium" id="podium"></div><div class="leaderlist" id="leaders"><div class="empty"><span>📡</span>Server bilan bog‘lanmoqda…</div></div><button class="btn secondary full" id="refresh" style="margin-top:13px">↻ Reytingni yangilash</button><div class="notice">Hafta dushanbadan yakshanbagacha. Reyting barcha 1–4-sinflar uchun umumiy.</div></section>
- </div>
- <div class="section-title"><div><h2>📅 Natijalar tarixi</h2><p>Oxirgi haftalar bo‘yicha saqlangan natijalar.</p></div><span class="tag">HISTORY</span></div>
- <section class="card"><div class="history" id="history"><div class="empty"><span>🗓️</span>Tarix yuklanmoqda…</div></div><div class="notice">Eslatma: Render bepul rejimidagi vaqtinchalik SQLite fayli doimiy saqlanishi kafolatlanmaydi. Ishonchli tarix uchun doimiy baza kerak.</div></section>
+<div class="section-head"><div><h2>📏 Uzunlik laboratoriyasi</h2><p>Avval qoidani o‘rgan, keyin testni yech!</p></div><span class="tag">+10 BALL</span></div>
+<div class="columns">
+<section class="card" id="game">
+<div class="cardhead"><h3>🧠 O‘rganuvchi test</h3><span class="tag" id="gradeTag">1-SINF</span></div>
+<div class="fields"><div class="field"><label for="studentName">O‘QUVCHI ISMI</label><input id="studentName" maxlength="80" placeholder="Ism va familiya"></div><div class="field"><label for="grade">SINF</label><select id="grade"><option value="1">1-sinf</option><option value="2">2-sinf</option><option value="3">3-sinf</option><option value="4">4-sinf</option></select></div></div>
+<button class="btn secondary full" id="saveProfile">Ism va sinfni saqlash</button>
+<div class="tabs"><button class="tab active" data-topic="all">Barchasi</button><button class="tab" data-topic="units">Birliklar</button><button class="tab" data-topic="add">Hisoblash</button><button class="tab" data-topic="story">Masalalar</button></div>
+<div class="topic"><h4>📚 Eslab qol!</h4><p><b>1 cm = 10 mm</b> · <b>1 dm = 10 cm</b> · <b>1 m = 100 cm</b> · <b>1 km = 1000 m</b>. Hisoblashdan oldin birliklarni tenglashtir.</p></div>
+<div class="quiz"><div class="quizmeta"><span id="qcount">MISOL 01</span><span id="topicName">BARCHA MAVZULAR</span></div><div class="progress"><span id="progress"></span></div><div class="question" id="question">1 metr necha santimetr?</div><div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite">Javobni tanla. To‘g‘ri javob +10 ball!</div><div class="quizactions"><button class="btn secondary full" id="hint">💡 Ishora</button><button class="btn primary full" id="next">Keyingi →</button></div></div>
+<div class="scorebar"><div><small>JAMI BALLAR</small><strong><span id="sessionPoints">0</span> ⭐</strong></div><div style="text-align:right"><small>TO‘G‘RI JAVOB</small><strong id="correctCount">0</strong></div></div>
+<div class="notice">🧪 Sinov rejimi. Haqiqiy o‘quvchilar uchun server xavfsizligini va doimiy bazani sozlash kerak.</div>
+</section>
+<section class="card" id="board"><div class="cardhead"><h3>🏆 Haftalik TOP-10</h3><span class="tag">1–4-SINF</span></div><div class="week" id="week">Reyting yuklanmoqda…</div><div class="podium" id="podium"></div><div class="leaderlist" id="leaders"><div class="empty"><span>📡</span>Server bilan aloqa qilinmoqda…</div></div><button class="btn secondary full" id="refresh" style="margin-top:12px">↻ Reytingni yangilash</button><div class="notice">Hafta dushanbadan yakshanbagacha.</div></section>
+</div>
+<div class="section-head"><div><h2>📅 Natijalar tarixi</h2><p>Haftalar kesimida ballar tarixi.</p></div><span class="tag">HISTORY</span></div>
+<section class="card"><div class="history" id="history"><div class="empty"><span>🗓️</span>Tarix yuklanmoqda…</div></div></section>
 </main>
-<footer class="wrap footer"><strong>✦ KELAJAK MARKAZI MATH QUEST</strong><p>Bilim bilan yuqoriga! © <span id="year"></span></p></footer><div class="toast" id="toast" role="status"></div>
-<script>
-(()=>{const API="https://kelajak-mathquest-backend.onrender.com";const $=id=>document.getElementById(id);let qn=1,points=0,correct=0,answered=0,locked=false,q=null;const key="km_mq_v2";const read=()=>{try{return JSON.parse(localStorage.getItem(key)||"{}")}catch{return {}}};const save=()=>localStorage.setItem(key,JSON.stringify({name:$("studentName").value,grade:$("grade").value,points,correct,answered}));const toast=s=>{let t=$("toast");t.textContent=s;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500)};const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));$("year").textContent=new Date().getFullYear();
-function question(){let g=+$("grade").value,a,b,op,ans,hint;if(g===1){a=r(1,10);b=r(1,10);op=Math.random()<.5?"+":"−";if(op==="−"&&b>a)[a,b]=[b,a];ans=op==="+"?a+b:a-b;hint="Sonlarni sanab qo‘sh yoki ayir."}else if(g===2){a=r(10,50);b=r(2,30);op=Math.random()<.5?"+":"−";if(op==="−"&&b>a)[a,b]=[b,a];ans=op==="+"?a+b:a-b;hint="O‘nliklar va birliklarni alohida hisobla."}else if(g===3){op=Math.random()<.7?"×":"÷";if(op==="×"){a=r(2,10);b=r(2,10);ans=a*b}else{b=r(2,10);ans=r(2,10);a=b*ans}hint="Ko‘paytirish jadvalidan foydalan."}else{let t=r(0,3);if(t===0){a=r(25,150);b=r(12,90);op="+";ans=a+b}else if(t===1){a=r(50,200);b=r(10,a);op="−";ans=a-b}else if(t===2){a=r(3,12);b=r(3,12);op="×";ans=a*b}else{b=r(3,12);ans=r(3,12);a=b*ans;op="÷"}hint="Amalni tartib bilan bajaring."}let set=new Set([ans]);while(set.size<4){let x=ans+r(-Math.max(4,g*4),Math.max(4,g*4));if(x>=0)set.add(x)}return{a,b,op,ans,hint,opts:[...set].sort(()=>Math.random()-.5)}}function r(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function renderQ(){locked=false;q=question();$("question").textContent=`${q.a} ${q.op} ${q.b} = ?`;$("answers").innerHTML="";q.opts.forEach(n=>{let b=document.createElement("button");b.className="answer";b.textContent=n;b.onclick=()=>choose(b,n);$("answers").appendChild(b)});$("qcount").textContent="MISOL "+String(qn).padStart(2,"0");$("progress").style.width=((qn-1)%10+1)*10+"%";$("feedback").textContent="Javobni tanla va ball yig‘!";$("feedback").style.color="";$("hint").disabled=false}
-function stats(){$("myPoints").textContent=points;$("answered").textContent=answered;$("accuracy").textContent=answered?Math.round(correct/answered*100)+"%":"—";$("sessionPoints").textContent=points;$("sessionCorrect").textContent=correct}
-async function choose(btn,n){if(locked)return;locked=true;answered++;let ok=n===q.ans;document.querySelectorAll(".answer").forEach(b=>{b.disabled=true;if(+b.textContent===q.ans)b.classList.add("good")});if(!ok)btn.classList.add("bad");if(ok){points+=10;correct++;$("feedback").textContent="Zo‘r! +10 yulduz ball ⭐";$("feedback").style.color="var(--green)"}else{$("feedback").textContent="To‘g‘ri javob: "+q.ans+" — yana urinib ko‘r!";$("feedback").style.color="var(--red)"}stats();save();let id=localStorage.getItem("km_demo_id");if(!id){id="demo-"+Math.random().toString(36).slice(2,12);localStorage.setItem("km_demo_id",id)}let name=$("studentName").value.trim()||"Sinov o‘quvchisi";try{let rr=await fetch(API+"/api/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({telegram_id:id,name,grade:+$("grade").value})});if(ok&&rr.ok)await fetch(API+"/api/answer",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({telegram_id:id,correct:true})});if(ok)refreshBoard()}catch(e){toast("Ball qurilmada saqlandi, serverga ulanishda muammo bor.")}}
-function next(){if(!locked){toast("Avval javobni tanlang.");return}qn++;renderQ()}
-function renderBoard(data){let rows=data.top10||[];$("week").textContent="Hafta: "+(data.week_start||"—")+" — "+(data.week_end||"")+" · TOP-"+rows.length;if(!rows.length){$("podium").innerHTML="";$("leaders").innerHTML='<div class="empty"><span>🏆</span>Hali ball yo‘q. Birinchi chempion sen bo‘lishing mumkin!</div>';return}let order=[rows[1],rows[0],rows[2]].filter(Boolean);$("podium").innerHTML=order.map((p,i)=>`<div class="pod ${i===1?"first":""}"><div class="medal">${i===0?"🥈":i===1?"🥇":"🥉"}</div><strong>${esc(p.name)}</strong><small>${p.points} ball</small></div>`).join("");$("leaders").innerHTML=rows.map((p,i)=>`<div class="leaderrow"><div class="rank">${i+1}</div><div><div class="lname">${esc(p.name)}</div><div class="lgrade">${p.grade}-sinf</div></div><div class="pts">${p.points} ⭐</div></div>`).join("")}
-async function refreshBoard(){try{let r=await fetch(API+"/api/leaderboard");if(!r.ok)throw Error("HTTP "+r.status);renderBoard(await r.json())}catch(e){$("week").textContent="Server bilan aloqa yo‘q";$("podium").innerHTML="";$("leaders").innerHTML='<div class="empty"><span>📡</span>Reytingni yuklab bo‘lmadi.<br>API/CORS yoki server holatini tekshirish kerak.</div>'}}
-async function refreshHistory(){try{let r=await fetch(API+"/api/history?weeks=8");if(!r.ok)throw Error("HTTP "+r.status);let data=await r.json();$("history").innerHTML=data.weeks.slice().reverse().map(w=>`<div class="historyrow"><div><strong>${w.week_start} — ${w.week_end}</strong><small>${w.answers_scored} ta ball berilgan javob</small></div><b>${w.points} ⭐</b></div>`).join("")}catch(e){$("history").innerHTML='<div class="empty"><span>🗓️</span>Tarixni yuklab bo‘lmadi. Backend v2 yangilangandan keyin ko‘rinadi.</div>'}}
-$("saveProfile").onclick=async()=>{let name=$("studentName").value.trim();if(!name){toast("Ismingni kiriting.");return}save();let id=localStorage.getItem("km_demo_id")||"demo-"+Math.random().toString(36).slice(2,12);localStorage.setItem("km_demo_id",id);try{let r=await fetch(API+"/api/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({telegram_id:id,name,grade:+$("grade").value})});if(!r.ok)throw Error();toast("Profil sinov uchun saqlandi.")}catch(e){toast("Profil qurilmada saqlandi; serverga ulanilmadi.")}};
-$("grade").onchange=()=>{qn=1;$("levelTag").textContent=$("grade").value+"-SINF";renderQ()};$("next").onclick=next;$("hint").onclick=()=>toast(q?q.hint:"Yordam yo‘q");$("startBtn").onclick=()=>$("game").scrollIntoView({behavior:"smooth"});$("goBoard").onclick=()=>$("board").scrollIntoView({behavior:"smooth"});$("refresh").onclick=()=>{refreshBoard();refreshHistory()};let old=read();if(old.name)$("studentName").value=old.name;if(old.grade)$("grade").value=old.grade;points=+old.points||0;correct=+old.correct||0;answered=+old.answered||0;stats();$("levelTag").textContent=$("grade").value+"-SINF";renderQ();refreshBoard();refreshHistory();
-})();
-</script></body></html>
+<footer class="wrap footer"><strong>✦ KELAJAK MARKAZI MATH QUEST</strong><p>Bilim bilan yuqoriga! © <span id="year"></span></p></footer>
+<div class="toast" id="toast"></div>
